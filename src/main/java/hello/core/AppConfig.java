@@ -19,7 +19,7 @@ public class AppConfig {
     //@Bean orderService -> new MemoryMemberRepository()
     // -> 싱글톤이 깨지는 것이 아닌가?!
 
-    @Bean
+    @Bean //메소드로 빈을 등록
     public MemberService memberService() {
         System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
