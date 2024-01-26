@@ -17,8 +17,10 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
     // 이렇게 되면 Order~Impl이 Fix~Policy와 Rate~Policy를 의존한다. -> DiscountPolicy 즉, 추상뿐만 아니라 구현 클래스에도 의존
 
-    @Autowired
+    @Autowired // 생성자 개수가 하나일 경우에는 생략해도 된다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = " + memberRepository);
+        System.out.println("discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
