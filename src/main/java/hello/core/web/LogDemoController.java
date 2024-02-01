@@ -13,15 +13,15 @@ import hello.core.common.MyLogger;
 public class  LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
     //HttpServletRequest -> 자바에서 제공하는 표준 서블릿 규약이 있는데 그에 의한 HttpRequest 정보를 받을 수 있다.
     @RequestMapping("log-demo")
     @ResponseBody
-    public String logDemo(HttpServletRequest request) {
+    public String logDemo(HttpServletRequest request) throws InterruptedException {
         String requestURL = request.getRequestURL().toString();
-        //logDemo에서 HTTP 요청이 들어온다. -> 아래 getObject()로 해당 빈을 요청하여 가져올 수 있음!
-        MyLogger myLogger = myLoggerProvider.getObject();
+
+        System.out.println("myLogger = " + myLogger.getClass());
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller test");
